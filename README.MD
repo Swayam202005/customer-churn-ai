@@ -97,15 +97,15 @@ uvicorn main:app --reload
 
 ## Dashboard UI
 
-![Dashboard](images/dashboard.png)
+![Dashboard](IMAGES/dashboard.png)
 
 ---
 
 ## Prediction Result
 
-![Prediction](images/prediction.png)
+![Prediction](IMAGES/prediction.png)
 
 ---
 
 
-![Prediction](images/prediction.png(2))
+![Prediction](IMAGES/prediction.png(2))
