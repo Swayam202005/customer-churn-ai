@@ -92,3 +92,20 @@ The model was trained on telecom customer data to predict customer churn using f
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
+
+# 📷 Project Screenshots
+
+## Dashboard UI
+
+![Dashboard](images/dashboard.png)
+
+---
+
+## Prediction Result
+
+![Prediction](images/prediction.png)
+
+---
+
+
+![Prediction](images/prediction.png(2))
