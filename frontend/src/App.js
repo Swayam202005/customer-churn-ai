@@ -1,263 +1,91 @@
 import { useState } from "react";
-import axios from "axios";
+
 import {
-  FaBrain,
-  FaUsers,
-  FaMoneyBillWave,
-  FaChartLine,
-} from "react-icons/fa";
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+
+import Dashboard from "./pages/Dashboard";
+import Customers from "./pages/Customers";
+import Predictions from "./pages/Predictions";
+import Analytics from "./pages/Analytics";
+import Settings from "./pages/Settings";
 
 function App() {
-  const [formData, setFormData] = useState({
-    tenure: "",
-    MonthlyCharges: "",
-    TotalCharges: "",
-    Contract: "Month-to-month",
-    InternetService: "DSL",
-    PaymentMethod: "Electronic check",
-    TechSupport: "No",
-    OnlineSecurity: "No",
-    PaperlessBilling: "Yes",
-  });
 
-  const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const predictChurn = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.post(
-        "https://customer-churn-ai-vwlf.onrender.com/predict",
-        {
-          tenure: Number(formData.tenure),
-          MonthlyCharges: Number(formData.MonthlyCharges),
-          TotalCharges: Number(formData.TotalCharges),
-          Contract: formData.Contract,
-          InternetService: formData.InternetService,
-          PaymentMethod: formData.PaymentMethod,
-          TechSupport: formData.TechSupport,
-          OnlineSecurity: formData.OnlineSecurity,
-          PaperlessBilling: formData.PaperlessBilling,
-        }
-      );
-
-      setResult(response.data);
-    } catch (error) {
-      console.log(error);
-      alert("Backend not running!");
-    }
-
-    setLoading(false);
-  };
+  const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
 
-      {/* Navbar */}
-      <nav className="flex justify-between items-center px-10 py-5 border-b border-slate-800">
-        <h1 className="text-3xl font-bold text-cyan-400">
-          AI Churn Dashboard
-        </h1>
+    <BrowserRouter>
 
-        <button className="bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-xl font-semibold transition">
-          Live Analytics
-        </button>
-      </nav>
+      <div
+        className={`flex min-h-screen overflow-hidden transition-all duration-500 ${
+          darkMode
+            ? "bg-[#030712] text-white"
+            : "bg-gray-100 text-black"
+        }`}
+      >
 
-      {/* Hero */}
-      <section className="px-10 py-14">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        {/* Background */}
+        <div className="fixed top-[-200px] left-[-200px] w-[500px] h-[500px] bg-cyan-500/20 blur-[180px] rounded-full"></div>
 
-          {/* Left */}
-          <div>
-            <h1 className="text-6xl font-extrabold leading-tight">
-              Customer Churn
-              <span className="text-cyan-400"> Prediction AI</span>
-            </h1>
+        <div className="fixed bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-purple-500/20 blur-[180px] rounded-full"></div>
 
-            <p className="text-slate-400 mt-6 text-lg">
-              Enterprise-grade machine learning dashboard for predicting
-              customer churn using AI-powered analytics.
-            </p>
+        {/* Sidebar */}
+        <Sidebar darkMode={darkMode} />
 
-            <div className="flex gap-5 mt-8">
-              <div className="bg-slate-900 p-5 rounded-2xl w-40">
-                <FaUsers className="text-3xl text-cyan-400 mb-3" />
-                <h2 className="text-2xl font-bold">7K+</h2>
-                <p className="text-slate-400 text-sm">Customers</p>
-              </div>
+        {/* Main */}
+        <div className="flex-1 relative z-10">
 
-              <div className="bg-slate-900 p-5 rounded-2xl w-40">
-                <FaChartLine className="text-3xl text-green-400 mb-3" />
-                <h2 className="text-2xl font-bold">79%</h2>
-                <p className="text-slate-400 text-sm">Accuracy</p>
-              </div>
+          <Navbar
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+          />
 
-              <div className="bg-slate-900 p-5 rounded-2xl w-40">
-                <FaBrain className="text-3xl text-pink-400 mb-3" />
-                <h2 className="text-2xl font-bold">AI</h2>
-                <p className="text-slate-400 text-sm">Powered</p>
-              </div>
-            </div>
-          </div>
+          <div className="p-10">
 
-          {/* Right Card */}
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+            <Routes>
 
-            <h2 className="text-3xl font-bold mb-6">
-              Predict Customer Churn
-            </h2>
-
-            <div className="grid grid-cols-2 gap-4">
-
-              <input
-                type="number"
-                name="tenure"
-                placeholder="Tenure"
-                className="bg-slate-800 p-3 rounded-xl outline-none"
-                onChange={handleChange}
+              <Route
+                path="/"
+                element={<Dashboard darkMode={darkMode} />}
               />
 
-              <input
-                type="number"
-                name="MonthlyCharges"
-                placeholder="Monthly Charges"
-                className="bg-slate-800 p-3 rounded-xl outline-none"
-                onChange={handleChange}
+              <Route
+                path="/customers"
+                element={<Customers darkMode={darkMode} />}
               />
 
-              <input
-                type="number"
-                name="TotalCharges"
-                placeholder="Total Charges"
-                className="bg-slate-800 p-3 rounded-xl outline-none"
-                onChange={handleChange}
+              <Route
+                path="/predictions"
+                element={<Predictions darkMode={darkMode} />}
               />
 
-              <select
-                name="Contract"
-                className="bg-slate-800 p-3 rounded-xl"
-                onChange={handleChange}
-              >
-                <option>Month-to-month</option>
-                <option>One year</option>
-                <option>Two year</option>
-              </select>
+              <Route
+                path="/analytics"
+                element={<Analytics darkMode={darkMode} />}
+              />
 
-              <select
-                name="InternetService"
-                className="bg-slate-800 p-3 rounded-xl"
-                onChange={handleChange}
-              >
-                <option>DSL</option>
-                <option>Fiber optic</option>
-                <option>No</option>
-              </select>
+              <Route
+                path="/settings"
+                element={<Settings darkMode={darkMode} />}
+              />
 
-              <select
-                name="PaymentMethod"
-                className="bg-slate-800 p-3 rounded-xl"
-                onChange={handleChange}
-              >
-                <option>Electronic check</option>
-                <option>Mailed check</option>
-                <option>Bank transfer (automatic)</option>
-              </select>
-
-              <select
-                name="TechSupport"
-                className="bg-slate-800 p-3 rounded-xl"
-                onChange={handleChange}
-              >
-                <option>No</option>
-                <option>Yes</option>
-              </select>
-
-              <select
-                name="OnlineSecurity"
-                className="bg-slate-800 p-3 rounded-xl"
-                onChange={handleChange}
-              >
-                <option>No</option>
-                <option>Yes</option>
-              </select>
-
-            </div>
-
-            <button
-              onClick={predictChurn}
-              className="mt-6 w-full bg-cyan-500 hover:bg-cyan-600 py-4 rounded-2xl text-lg font-bold transition"
-            >
-              {loading ? "Predicting..." : "Predict Churn"}
-            </button>
-
-            {result && (
-              <div className="mt-8 bg-slate-800 rounded-2xl p-6 border border-slate-700">
-
-                <h2 className="text-2xl font-bold mb-4">
-                  Prediction Result
-                </h2>
-
-                <div className="flex items-center justify-between">
-
-                  <div>
-                    <p className="text-slate-400">Prediction</p>
-
-                    <h1
-                      className={`text-4xl font-bold ${
-                        result.prediction === 1
-                          ? "text-red-400"
-                          : "text-green-400"
-                      }`}
-                    >
-                      {result.prediction === 1
-                        ? "Likely to Churn"
-                        : "Customer Safe"}
-                    </h1>
-                  </div>
-
-                  <div>
-                    <FaMoneyBillWave className="text-6xl text-cyan-400" />
-                  </div>
-
-                </div>
-
-                <div className="mt-6">
-                  <p className="text-slate-400 mb-2">
-                    Churn Probability
-                  </p>
-
-                  <div className="w-full bg-slate-700 rounded-full h-5">
-                    <div
-                      className="bg-cyan-400 h-5 rounded-full"
-                      style={{
-                        width: `${(result.probability * 100).toFixed(0)}%`,
-                      }}
-                    ></div>
-                  </div>
-
-                  <p className="mt-2 text-lg font-bold">
-                    {(result.probability * 100).toFixed(2)}%
-                  </p>
-                </div>
-
-              </div>
-            )}
+            </Routes>
 
           </div>
 
         </div>
-      </section>
 
-    </div>
+      </div>
+
+    </BrowserRouter>
+
   );
 }
 
