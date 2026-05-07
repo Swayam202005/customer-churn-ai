@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# 🚀 AI Customer Churn Prediction Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack AI-powered customer churn prediction system built using React, Tailwind CSS, FastAPI, and Machine Learning.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+# 🌍 Live Demo
 
-### `npm start`
+Frontend: https://customer-churn-ai.vercel.app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Backend API: https://customer-churn-ai-vwlf.onrender.com
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+# 📌 Project Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project predicts whether a customer is likely to leave a company (customer churn) based on customer behavior, billing information, and service usage.
 
-### `npm run build`
+The system uses a trained Machine Learning model integrated with a modern React frontend and FastAPI backend.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# ✨ Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+✅ AI-powered churn prediction  
+✅ Modern React dashboard UI  
+✅ FastAPI backend API  
+✅ Machine Learning integration  
+✅ Real-time prediction results  
+✅ Probability score visualization  
+✅ Premium SaaS-style interface  
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# 🛠️ Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Frontend
+- React.js
+- Tailwind CSS
+- Axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Backendapp
+- FastAPI
+- Python
+- Uvicorn
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Machine Learning
+- Scikit-learn
+- Pandas
+- NumPy
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# 📊 Machine Learning Model
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The model was trained on telecom customer data to predict customer churn using features like:
 
-### Code Splitting
+- Monthly charges
+- Total charges
+- Contract type
+- Internet service
+- Tech support
+- Online security
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Model Used
+- Random Forest Classifier
 
-### Analyzing the Bundle Size
+### Accuracy
+- ~79% Accuracy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+# 📷 Project Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Dashboard UI
 
-### Advanced Configuration
+![Dashboard](images/dashboard.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Prediction Result
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Prediction](images/prediction.png)
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 🚀 Installation
+
+## Backend Setup
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
