@@ -35,7 +35,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/predict",
+        "https://customer-churn-ai-vwlf.onrender.com/predict",
         {
           tenure: Number(formData.tenure),
           MonthlyCharges: Number(formData.MonthlyCharges),
