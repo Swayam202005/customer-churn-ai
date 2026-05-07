@@ -107,5 +107,6 @@ uvicorn main:app --reload
 
 ---
 
+## Prediction Result 2
 
-![Prediction](IMAGES/prediction.png(2))
+![Prediction2](IMAGES/prediction2.png)
